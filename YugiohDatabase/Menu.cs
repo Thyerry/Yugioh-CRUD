@@ -73,53 +73,29 @@ namespace YugiohDatabase {
 
             Cards edit = cartas.Find(x => x.Nome == pesquisa);
 
-            if (edit.Nome != "") {
+            if (edit == null) {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Essa carta ainda não foi adicionada a base de dados!");
                 Console.ResetColor();
+                Console.ReadKey();
+                Console.Clear();
             }
             else {
                 if (edit.GetType().Equals(new MonsterCard().GetType())) {
-                    Console.WriteLine("Insira as Novas Informações");
-                    Console.Write("Nome: ");
-                    string novoNome = Console.ReadLine();
-                    Console.Write("Ataque: ");
-                    int novoAtk = Convert.ToInt32(Console.ReadLine());
-                    Console.Write("Defesa: ");
-                    int novoDef = Convert.ToInt32(Console.ReadLine());
-
-                    MonsterCard monstro = new MonsterCard(novoNome, novoAtk, novoDef, MonsterType.Sea_Serpent, MonsterAttribute.Water);
+                    Console.WriteLine("Insira as novas Informações");
+                    MenuAddMonstro(cartas);
                     cartas.Remove(edit);
-                    cartas.Add(monstro);
 
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.WriteLine("Dados do Monstro Foram Atualizados!");
                     Console.ResetColor();
                     Console.ReadKey();
                     Console.Clear();
-
                 }
                 else if (edit.GetType().Equals(new SpellCard().GetType())) {
                     Console.WriteLine("Insira as Novas Informações");
-                    Console.Write("Nome: ");
-                    string novoNome = Console.ReadLine();
-
-                    Console.WriteLine("Categoria:");
-                    Console.WriteLine("1 - Normal");
-                    Console.WriteLine("2 - Contínua");
-                    Console.WriteLine("3 - Jogo Rápido");
-                    Console.WriteLine("4 - Equipamento");
-                    Console.WriteLine("5 - Campo");
-                    Console.WriteLine("6 - Ritual");
-
-                    SpellCategory novaCategoria = (SpellCategory)Convert.ToInt32(Console.ReadLine());
-
-                    Console.Write("Efeito: ");
-                    string novoEfeito = Console.ReadLine();
-
-                    SpellCard spell = new SpellCard(novoNome, novoEfeito, novaCategoria);
+                    MenuAddSpell(cartas);
                     cartas.Remove(edit);
-                    cartas.Add(spell);
 
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine("Dados da Magia Foram Atualizados!");
@@ -130,22 +106,8 @@ namespace YugiohDatabase {
                 }
                 else {
                     Console.WriteLine("Insira as Novas Informações");
-                    Console.Write("Nome: ");
-                    string novoNome = Console.ReadLine();
-
-                    Console.WriteLine("Escolha a Categoria da Carta Armadilha:");
-                    Console.WriteLine("1 - Normal");
-                    Console.WriteLine("2 - Contínua");
-                    Console.WriteLine("3 - Resposta");
-
-                    TrapCategory categoria = (TrapCategory)Convert.ToInt32(Console.ReadLine());
-
-                    Console.Write("Efeito: ");
-                    string novoEfeito = Console.ReadLine();
-
-                    TrapCard trap = new TrapCard(novoNome, novoEfeito, categoria);
+                    MenuAddTrap(cartas);
                     cartas.Remove(edit);
-                    cartas.Add(trap);
 
                     Console.ForegroundColor = ConsoleColor.Magenta;
                     Console.WriteLine("Dados da Foram Atualizados!");
@@ -164,7 +126,7 @@ namespace YugiohDatabase {
             Console.WriteLine("REMOVER CARTA");
             Console.Write("Nome: ");
             string pesquisa = Console.ReadLine();
-            
+
             Cards remove = cartas.Find(card => card.Nome == pesquisa);
 
             if (remove.Nome != pesquisa) {
@@ -184,39 +146,47 @@ namespace YugiohDatabase {
         }
 
         private List<Cards> MenuAddMonstro(List<Cards> cartas) {
-            string nome;
-            int atk, def;
+            int atk = 0, def = 0;
             Console.Write("Nome: ");
-            nome = Console.ReadLine();
+            string nome = Console.ReadLine();
+            try {
+                Console.Write("Ataque: ");
+                atk = Convert.ToInt32(Console.ReadLine());
 
-            Console.Write("Qual o valor de ataque: ");
-            atk = Convert.ToInt32(Console.ReadLine());
+                Console.Write("Defesa: ");
+                def = Convert.ToInt32(Console.ReadLine());
 
-            Console.Write("Qual o valor de defesa: ");
-            def = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine(MostraTipos());
+                MonsterType tipo = (MonsterType)Convert.ToInt32(Console.ReadLine());
 
-            Console.WriteLine(MostraTipos());
-            MonsterType tipo = (MonsterType) Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Atributo: ");
+                Console.WriteLine("1 - Luz");
+                Console.WriteLine("2 - Trevas");
+                Console.WriteLine("3 - Água");
+                Console.WriteLine("4 - Terra");
+                Console.WriteLine("5 - Fogo");
+                Console.WriteLine("6 - Vento");
+                Console.WriteLine("7 - Divino");
+                MonsterAttribute atributo = (MonsterAttribute)Convert.ToInt32(Console.ReadLine());
 
-            Console.WriteLine("Atributo: ");
-            Console.WriteLine("1 - Luz");
-            Console.WriteLine("2 - Trevas");
-            Console.WriteLine("3 - Água");
-            Console.WriteLine("4 - Terra");
-            Console.WriteLine("5 - Fogo");
-            Console.WriteLine("6 - Vento");
-            Console.WriteLine("7 - Divino");
-            MonsterAttribute atributo = (MonsterAttribute) Convert.ToInt32(Console.ReadLine());
+                MonsterCard monster = new MonsterCard(nome, atk, def, tipo, atributo);
+                cartas.Add(monster);
 
-            MonsterCard monster = new MonsterCard(nome, atk, def, tipo, atributo);
-            cartas.Add(monster);
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("Monstro Adicionado com Sucesso!");
+                Console.ResetColor();
+                Console.ReadKey();
 
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("Monstro Adicionado com Sucesso!");
-            Console.ResetColor();
-            Console.ReadKey();
-
-            Console.Clear();
+                Console.Clear();
+            }
+            catch (Exception e) {
+                e.ToString();
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("O valor atribuído é inválido!");
+                Console.ReadKey();
+                Console.ResetColor();
+                MenuAddMonstro(cartas);
+            }
             return cartas;
         }
 
@@ -278,7 +248,7 @@ namespace YugiohDatabase {
             return cartas;
         }
 
-        private string MostraTipos(){
+        private string MostraTipos() {
 
             string l01 = String.Format("01 - Aqua            |02 - Besta            |03 - Besta Guerreira |04 - Criador         |05 - Cyberse        ");
             string l02 = String.Format("06 - Dinossauro      |07 - Besta Divina     |08 - Dragão          |09 - Fada            |10 - Demonio        ");
@@ -286,7 +256,7 @@ namespace YugiohDatabase {
             string l04 = String.Format("16 - Pyro            |17 - Réptil           |18 - Pedra           |19 - Serpente Marinha|20 - Trovão         ");
             string l05 = String.Format("21 - Mago            |22 - Guerreiro        |23 - Besta Alada     |24 - Wyrm            |25 - Zumbi          ");
 
-            return String.Format("Tipo: \n{0}\n{1}\n{2}\n{3}\n{4}", l01,l02,l03,l04,l05);
+            return String.Format("Tipo: \n{0}\n{1}\n{2}\n{3}\n{4}", l01, l02, l03, l04, l05);
         }
     }
 }
