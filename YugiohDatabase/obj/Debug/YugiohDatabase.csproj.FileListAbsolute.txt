@@ -5,3 +5,10 @@ C:\Users\t.nunes.dos.santos\source\repos\YugiohDatabase\YugiohDatabase\obj\Debug
 C:\Users\t.nunes.dos.santos\source\repos\YugiohDatabase\YugiohDatabase\obj\Debug\YugiohDatabase.csproj.CoreCompileInputs.cache
 C:\Users\t.nunes.dos.santos\source\repos\YugiohDatabase\YugiohDatabase\obj\Debug\YugiohDatabase.exe
 C:\Users\t.nunes.dos.santos\source\repos\YugiohDatabase\YugiohDatabase\obj\Debug\YugiohDatabase.pdb
+C:\Users\t.nunes.dos.santos\source\repos\Yugioh-CRUD\YugiohDatabase\obj\Debug\YugiohDatabase.csprojAssemblyReference.cache
+C:\Users\t.nunes.dos.santos\source\repos\Yugioh-CRUD\YugiohDatabase\obj\Debug\YugiohDatabase.csproj.CoreCompileInputs.cache
+C:\Users\t.nunes.dos.santos\source\repos\Yugioh-CRUD\YugiohDatabase\obj\Debug\YugiohDatabase.exe
+C:\Users\t.nunes.dos.santos\source\repos\Yugioh-CRUD\YugiohDatabase\obj\Debug\YugiohDatabase.pdb
+C:\Users\t.nunes.dos.santos\source\repos\Yugioh-CRUD\YugiohDatabase\bin\Debug\YugiohDatabase.exe.config
+C:\Users\t.nunes.dos.santos\source\repos\Yugioh-CRUD\YugiohDatabase\bin\Debug\YugiohDatabase.exe
+C:\Users\t.nunes.dos.santos\source\repos\Yugioh-CRUD\YugiohDatabase\bin\Debug\YugiohDatabase.pdb

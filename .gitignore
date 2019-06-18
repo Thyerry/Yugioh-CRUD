@@ -1,5 +1,11 @@
-YugiohDatabase.exe
-YugiohDatabase.pbd
-YugiohDatabase.exe
-YugiohDatabase.pbd
-YugiohDatabase.csproj.FileListAbsolute.txt
+.vs/YugiohDatabase/v16/.suo
+YugiohDatabase/obj/Debug/YugiohDatabase.csprojAssemblyReference.cache
+YugiohDatabase/obj/Debug/YugiohDatabase.csproj.FileListAbsolute.txt
+YugiohDatabase/obj/Debug/YugiohDatabase.pdb
+YugiohDatabase/obj/Debug/YugiohDatabase.exe
+YugiohDatabase/bin/Debug/YugiohDatabase.pdb
+YugiohDatabase/bin/Debug/YugiohDatabase.exe
+.vs/YugiohDatabase/v16/Server/sqlite3/storage.ide-wal
+.vs/YugiohDatabase/v16/Server/sqlite3/storage.ide-shm
+.vs/YugiohDatabase/v16/Server/sqlite3/storage.ide
+.vs/YugiohDatabase/v16/Server/sqlite3/db.lock
