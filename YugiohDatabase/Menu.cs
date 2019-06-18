@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using YugiohDatabase.Enum;
 
 namespace YugiohDatabase {
     class Menu {
@@ -87,7 +88,7 @@ namespace YugiohDatabase {
                     Console.Write("Defesa: ");
                     int novoDef = Convert.ToInt32(Console.ReadLine());
 
-                    MonsterCard monstro = new MonsterCard(novoNome, novoAtk, novoDef);
+                    MonsterCard monstro = new MonsterCard(novoNome, novoAtk, novoDef, MonsterType.Sea_Serpent, MonsterAttribute.Water);
                     cartas.Remove(edit);
                     cartas.Add(monstro);
 
@@ -182,7 +183,7 @@ namespace YugiohDatabase {
             return cartas;
         }
 
-        public List<Cards> MenuAddMonstro(List<Cards> cartas) {
+        private List<Cards> MenuAddMonstro(List<Cards> cartas) {
             string nome;
             int atk, def;
             Console.Write("Nome: ");
@@ -194,8 +195,20 @@ namespace YugiohDatabase {
             Console.Write("Qual o valor de defesa: ");
             def = Convert.ToInt32(Console.ReadLine());
 
+            Console.WriteLine(MostraTipos());
+            MonsterType tipo = (MonsterType) Convert.ToInt32(Console.ReadLine());
 
-            MonsterCard monster = new MonsterCard(nome, atk, def);
+            Console.WriteLine("Atributo: ");
+            Console.WriteLine("1 - Luz");
+            Console.WriteLine("2 - Trevas");
+            Console.WriteLine("3 - Água");
+            Console.WriteLine("4 - Terra");
+            Console.WriteLine("5 - Fogo");
+            Console.WriteLine("6 - Vento");
+            Console.WriteLine("7 - Divino");
+            MonsterAttribute atributo = (MonsterAttribute) Convert.ToInt32(Console.ReadLine());
+
+            MonsterCard monster = new MonsterCard(nome, atk, def, tipo, atributo);
             cartas.Add(monster);
 
             Console.ForegroundColor = ConsoleColor.Yellow;
@@ -207,7 +220,7 @@ namespace YugiohDatabase {
             return cartas;
         }
 
-        public List<Cards> MenuAddSpell(List<Cards> cartas) {
+        private List<Cards> MenuAddSpell(List<Cards> cartas) {
             string nome, efeito;
 
             Console.Write("Nome: ");
@@ -238,7 +251,7 @@ namespace YugiohDatabase {
             return cartas;
         }
 
-        public List<Cards> MenuAddTrap(List<Cards> cartas) {
+        private List<Cards> MenuAddTrap(List<Cards> cartas) {
             string nome, efeito;
             Console.Write("Nome: ");
             nome = Console.ReadLine();
@@ -263,6 +276,17 @@ namespace YugiohDatabase {
 
             Console.Clear();
             return cartas;
+        }
+
+        private string MostraTipos(){
+
+            string l01 = String.Format("01 - Aqua            |02 - Besta            |03 - Besta Guerreira |04 - Criador         |05 - Cyberse        ");
+            string l02 = String.Format("06 - Dinossauro      |07 - Besta Divina     |08 - Dragão          |09 - Fada            |10 - Demonio        ");
+            string l03 = String.Format("11 - Peixe           |12 - Inseto           |13 - Máquina         |14 - Planta          |15 - Psíquico       ");
+            string l04 = String.Format("16 - Pyro            |17 - Réptil           |18 - Pedra           |19 - Serpente Marinha|20 - Trovão         ");
+            string l05 = String.Format("21 - Mago            |22 - Guerreiro        |23 - Besta Alada     |24 - Wyrm            |25 - Zumbi          ");
+
+            return String.Format("Tipo: \n{0}\n{1}\n{2}\n{3}\n{4}", l01,l02,l03,l04,l05);
         }
     }
 }
