@@ -44,14 +44,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cards.cs" />
+    <Compile Include="Enum\MonsterAttribute.cs" />
     <Compile Include="Menu.cs" />
     <Compile Include="MonsterCard.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SpellCard.cs" />
-    <Compile Include="SpellCategory.cs" />
+    <Compile Include="Enum\SpellCategory.cs" />
     <Compile Include="TrapCard.cs" />
-    <Compile Include="TrapCategory.cs" />
+    <Compile Include="Enum\TrapCategory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
