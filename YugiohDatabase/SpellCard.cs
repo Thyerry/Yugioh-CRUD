@@ -10,21 +10,13 @@ namespace YugiohDatabase {
         private SpellCategory _category { get; set; }
 
         public string Effect {
-            get {
-                return this._effect;
-            }
-            set {
-                this._effect = value;
-            }
+            get { return this._effect; }
+            set { this._effect = value; }
         }
 
         public SpellCategory Category {
-            get {
-                return _category;
-            }
-            set {
-                this._category = value;
-            }
+            get { return _category; }
+            set { this._category = value; }
         }
         public SpellCard() { }
         public SpellCard(string nome, string effect, SpellCategory category) : base(nome) {
