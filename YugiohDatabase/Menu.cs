@@ -146,15 +146,14 @@ namespace YugiohDatabase {
         }
 
         private List<Cards> MenuAddMonstro(List<Cards> cartas) {
-            int atk = 0, def = 0;
-            Console.Write("Nome: ");
-            string nome = Console.ReadLine();
             try {
+                Console.Write("Nome: ");
+                string nome = Console.ReadLine();
                 Console.Write("Ataque: ");
-                atk = Convert.ToInt32(Console.ReadLine());
+                int atk = Convert.ToInt32(Console.ReadLine());
 
                 Console.Write("Defesa: ");
-                def = Convert.ToInt32(Console.ReadLine());
+                int def = Convert.ToInt32(Console.ReadLine());
 
                 Console.WriteLine(MostraTipos());
                 MonsterType tipo = (MonsterType)Convert.ToInt32(Console.ReadLine());
@@ -179,72 +178,84 @@ namespace YugiohDatabase {
 
                 Console.Clear();
             }
-            catch (Exception e) {
-                e.ToString();
+            catch (FormatException e) {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("O valor atribuído é inválido!");
                 Console.ReadKey();
                 Console.ResetColor();
                 MenuAddMonstro(cartas);
             }
+
             return cartas;
         }
 
         private List<Cards> MenuAddSpell(List<Cards> cartas) {
-            string nome, efeito;
 
-            Console.Write("Nome: ");
-            nome = Console.ReadLine();
+            try {
+                Console.Write("Nome: ");
+                string nome = Console.ReadLine();
 
-            Console.WriteLine("Escolha a Categoria da Carta Mágica:");
-            Console.WriteLine("1 - Normal");
-            Console.WriteLine("2 - Contínua");
-            Console.WriteLine("3 - Jogo Rápido");
-            Console.WriteLine("4 - Equipamento");
-            Console.WriteLine("5 - Campo");
-            Console.WriteLine("6 - Ritual");
+                Console.WriteLine("Escolha a Categoria da Carta Mágica:");
+                Console.WriteLine("1 - Normal");
+                Console.WriteLine("2 - Contínua");
+                Console.WriteLine("3 - Jogo Rápido");
+                Console.WriteLine("4 - Equipamento");
+                Console.WriteLine("5 - Campo");
+                Console.WriteLine("6 - Ritual");
 
-            SpellCategory categoria = (SpellCategory)Convert.ToInt32(Console.ReadLine());
+                SpellCategory categoria = (SpellCategory)Convert.ToInt32(Console.ReadLine());
 
-            Console.Write("Efeito: ");
-            efeito = Console.ReadLine();
+                Console.Write("Efeito: ");
+                string efeito = Console.ReadLine();
 
-            SpellCard spell = new SpellCard(nome, efeito, categoria);
-            cartas.Add(spell);
+                SpellCard spell = new SpellCard(nome, efeito, categoria);
+                cartas.Add(spell);
 
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("Magia Adicionada com Sucesso!");
-            Console.ResetColor();
-            Console.ReadKey();
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("Magia Adicionada com Sucesso!");
+                Console.ResetColor();
+                Console.ReadKey();
 
-            Console.Clear();
+                Console.Clear();
+            }
+            catch (FormatException e) {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("O valor atribuído é inválido!");
+                Console.ReadKey();
+                Console.ResetColor();
+                MenuAddSpell(cartas);
+            }
             return cartas;
         }
 
         private List<Cards> MenuAddTrap(List<Cards> cartas) {
-            string nome, efeito;
-            Console.Write("Nome: ");
-            nome = Console.ReadLine();
+            try{
+                Console.Write("Nome: ");
+                string nome = Console.ReadLine();
 
-            Console.WriteLine("Escolha a Categoria da Carta Armadilha:");
-            Console.WriteLine("1 - Normal");
-            Console.WriteLine("2 - Contínua");
-            Console.WriteLine("3 - Resposta");
+                Console.WriteLine("Escolha a Categoria da Carta Armadilha:");
+                Console.WriteLine("1 - Normal");
+                Console.WriteLine("2 - Contínua");
+                Console.WriteLine("3 - Resposta");
 
-            TrapCategory categoria = (TrapCategory)Convert.ToInt32(Console.ReadLine());
+                TrapCategory categoria = (TrapCategory)Convert.ToInt32(Console.ReadLine());
 
-            Console.Write("Efeito: ");
-            efeito = Console.ReadLine();
+                Console.Write("Efeito: ");
+                string efeito = Console.ReadLine();
 
-            TrapCard trap = new TrapCard(nome, efeito, categoria);
-            cartas.Add(trap);
+                TrapCard trap = new TrapCard(nome, efeito, categoria);
+                cartas.Add(trap);
 
-            Console.ForegroundColor = ConsoleColor.Magenta;
-            Console.WriteLine("Armadilha Adicionada com Sucesso!");
-            Console.ResetColor();
-            Console.ReadKey();
+                Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.WriteLine("Armadilha Adicionada com Sucesso!");
+                Console.ResetColor();
+                Console.ReadKey();
 
-            Console.Clear();
+                Console.Clear();
+            }
+            catch(FormatException e) {
+                
+            }
             return cartas;
         }
 
