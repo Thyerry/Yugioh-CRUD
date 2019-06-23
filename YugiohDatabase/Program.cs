@@ -41,7 +41,6 @@ namespace YugiohDatabase {
                 }
             } while (op != '0');
         }
-
         public void initializate() {
 
         }

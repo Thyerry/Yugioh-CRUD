@@ -26,7 +26,6 @@ namespace YugiohDatabase {
                     Console.WriteLine("Monstro Adicionado com Sucesso!");
                     Console.ResetColor();
                     Console.ReadKey();
-
                     Console.Clear();
                     break;
                 }
@@ -136,14 +135,13 @@ namespace YugiohDatabase {
                     cartas.Remove(edit);
 
                     Console.ForegroundColor = ConsoleColor.Magenta;
-                    Console.WriteLine("Dados da Foram Atualizados!");
+                    Console.WriteLine("Dados da Armadilha Foram Atualizados!");
                     Console.ResetColor();
                     Console.ReadKey();
                     Console.Clear();
                 }
 
             }
-
             return cartas;
         }
 
@@ -164,14 +162,24 @@ namespace YugiohDatabase {
                     Console.Clear();
                 }
                 else {
-                    Console.Write("Você tem certeza que quer excluir essa carta? (y/n): ");
+                    Console.Write("Você tem certeza que quer excluir {0}? (y/n): ",remove.Nome);
                     char confirm = Convert.ToChar(Console.ReadLine());
-                    cartas.Remove(remove);
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine("A carta foi excluída do Banco de Dados");
-                    Console.ResetColor();
-                    Console.ReadKey();
-                    Console.Clear();
+                    if(confirm == 'y' || confirm == 'Y'){
+                        cartas.Remove(remove);
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("A carta foi excluída do Banco de Dados");
+                        Console.ResetColor();
+                        Console.ReadKey();
+                        Console.Clear();
+                    }
+                    else {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Remoção Cancelada!");
+                        Console.ResetColor();
+                        Console.ReadKey();
+                        Console.Clear();
+                    }
+                    
                 }
             }
             catch (Exception e) {

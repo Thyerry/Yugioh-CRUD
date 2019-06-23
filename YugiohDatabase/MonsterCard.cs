@@ -54,7 +54,7 @@ namespace YugiohDatabase {
             string ataque = String.Format("ATK: {0}", this.AtkValue);
             string defesa = String.Format("DEF: {0}", this.DefValue);
 
-            return String.Format("{0}\n{1}\n{2}\n{3}\n{4}\n{5} {6}", carta, nome, tipo, atributo, level, ataque, defesa);
+            return String.Format("{0}\n{1}\n{2}\n{3}\n{4}\n{5} {6}", carta, nome, level, tipo, atributo, ataque, defesa);
         }
     }
 }
