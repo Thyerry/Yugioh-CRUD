@@ -9,6 +9,7 @@ namespace YugiohDatabase {
     class MonsterCard : Cards {
         private int _atkValue { get; set; }
         private int _defValue { get; set; }
+        private int _level { get; set; }
         private MonsterType _type { get; set; }
         private MonsterAttribute _attribute { get; set; }
 
@@ -21,6 +22,10 @@ namespace YugiohDatabase {
             get { return this._defValue; }
             set { this._defValue = value; }
         }
+        public int Level {
+            get { return this._level; }
+            set { this._level = value; }
+        }
 
         public MonsterType Type {
             get { return this._type; }
@@ -32,21 +37,24 @@ namespace YugiohDatabase {
             set { this._attribute = value; }
         }
         public MonsterCard() { }
-        public MonsterCard(string _nome, int atkValue, int defValue, MonsterType tipo, MonsterAttribute atributo) : base(_nome) {
+        public MonsterCard(string _nome, int atkValue, int defValue, int level,MonsterType tipo, MonsterAttribute atributo) : base(_nome) {
             this._atkValue = atkValue;
             this._defValue = defValue;
+            this._level = level;
             this._type = tipo;
             this._attribute = atributo;
         }
 
         public override string ToString() {
+            string carta = String.Format("Monstro:");
             string nome = String.Format("Nome: {0}", this.Nome);
             string tipo = String.Format("Tipo: {0}", this.Type);
+            string level = String.Format("Level: {0}", this.Level);
             string atributo = String.Format("Atributo: {0}", this.Attribute);
             string ataque = String.Format("ATK: {0}", this.AtkValue);
             string defesa = String.Format("DEF: {0}", this.DefValue);
 
-            return String.Format("{0}\n{1}\n{2}\n{3}\t{4}", nome, tipo, atributo, ataque, defesa);
+            return String.Format("{0}\n{1}\n{2}\n{3}\n{4}\n{5} {6}", carta, nome, tipo, atributo, level, ataque, defesa);
         }
     }
 }

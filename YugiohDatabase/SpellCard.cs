@@ -25,7 +25,8 @@ namespace YugiohDatabase {
         }
 
         public override string ToString() {
-            return String.Format("Nome: {0}\nCategoria: {1}\nEfeito: {2}", this.Nome, this.Category, this.Effect);
+            
+            return String.Format("Mágica: \nNome: {0}\nCategoria: {1}\nEfeito: {2}", this.Nome, this.Category, this.Effect);
         }
     }
 }
