@@ -13,6 +13,14 @@ namespace YugiohDatabase {
         private MonsterType _type { get; set; }
         private MonsterAttribute _attribute { get; set; }
 
+        public MonsterCard() { }
+        public MonsterCard(string _nome, int atkValue, int defValue, int level, MonsterType tipo, MonsterAttribute atributo) : base(_nome) {
+            this._atkValue = atkValue;
+            this._defValue = defValue;
+            this._level = level;
+            this._type = tipo;
+            this._attribute = atributo;
+        }
         public int AtkValue {
             get { return this._atkValue; }
             set { this._atkValue = value; }
@@ -36,15 +44,6 @@ namespace YugiohDatabase {
             get { return this._attribute; }
             set { this._attribute = value; }
         }
-        public MonsterCard() { }
-        public MonsterCard(string _nome, int atkValue, int defValue, int level,MonsterType tipo, MonsterAttribute atributo) : base(_nome) {
-            this._atkValue = atkValue;
-            this._defValue = defValue;
-            this._level = level;
-            this._type = tipo;
-            this._attribute = atributo;
-        }
-
         public override string ToString() {
             string carta = String.Format("Monstro:");
             string nome = String.Format("Nome: {0}", this.Nome);

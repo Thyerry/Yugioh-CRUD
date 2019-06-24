@@ -10,7 +10,7 @@ namespace YugiohDatabase {
             char op = '1';
             List<Cards> cartas = new List<Cards>();
             Menu menu = new Menu();
-
+            Console.Title = "Yu-Gi-Oh! Database";
 
             do {
                 Console.WriteLine("Yu-Gi-Oh! Database");
@@ -19,6 +19,7 @@ namespace YugiohDatabase {
                 Console.WriteLine("2 - Consultar Carta");
                 Console.WriteLine("3 - Editar Carta");
                 Console.WriteLine("4 - Remover Carta");
+                Console.WriteLine("5 - Ordenar Lista");
                 Console.WriteLine("0 - Sair");
 
                 try {
@@ -29,19 +30,20 @@ namespace YugiohDatabase {
                         case '2': menu.MenuConsultaCarta(cartas); break;
                         case '3': menu.MenuEditaCarta(cartas); break;
                         case '4': menu.MenuRemoveCarta(cartas); break;
+                        case '5': menu.MenuOrdena(cartas); break;
                         case '0': break;
-                        default: throw new Exception(); 
+                        default: throw new FormatException("Insira uma opção válida!"); 
                     }
-                } catch (Exception e){
+                } catch (FormatException e){
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("INSIRA UMA OPÇÃO VÁLIDA");
+                    Console.WriteLine(e.Message);
                     Console.ReadKey();
                     Console.ResetColor();
                     Console.Clear();
                 }
             } while (op != '0');
         }
-        public void initializate() {
+        public void Initializate() {
 
         }
 

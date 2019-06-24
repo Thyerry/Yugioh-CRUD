@@ -56,7 +56,6 @@ namespace YugiohDatabase {
                     break;
                 }
             }
-
             return cartas;
         }
 
@@ -193,11 +192,24 @@ namespace YugiohDatabase {
             return cartas;
         }
 
+        public List<Cards> MenuOrdena(List<Cards> cartas) {
+            Console.WriteLine("Lista das Cartas");
+            foreach (Cards card in cartas)
+            {
+                Console.WriteLine(card.ToString());
+                Console.WriteLine();
+            }
+            return cartas;
+        }
         private List<Cards> MenuAddMonstro(List<Cards> cartas) {
             try {
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("MONSTRO\n");
+                Console.ResetColor();
                 Console.Write("Nome: ");
                 string nome = Console.ReadLine();
-
+    
                 Console.Write("Ataque: ");
                 int atk = Convert.ToInt32(Console.ReadLine());
 
@@ -206,6 +218,8 @@ namespace YugiohDatabase {
 
                 Console.WriteLine(MostraTipos());
                 MonsterType tipo = (MonsterType)Convert.ToInt32(Console.ReadLine());
+                if((int)tipo < 1 || (int)tipo > 25)
+                    throw new FormatException("Tipo Inválido!");
 
                 Console.WriteLine("Atributo: ");
                 Console.WriteLine("1 - Luz");
@@ -215,20 +229,21 @@ namespace YugiohDatabase {
                 Console.WriteLine("5 - Fogo");
                 Console.WriteLine("6 - Vento");
                 Console.WriteLine("7 - Divino");
-                MonsterAttribute atributo = (MonsterAttribute)Convert.ToInt32(Console.ReadLine());
+                MonsterAttribute atributo = (MonsterAttribute) Convert.ToInt32(Console.ReadLine());
+                if((int)atributo < 1 || (int)atributo > 7)
+                    throw new FormatException("Atributo Inválido!");
 
                 Console.WriteLine("Level (1-12): ");
                 int lvl = Convert.ToInt32(Console.ReadLine());
-                if (lvl < 1 || lvl > 12) {
-                    throw new FormatException();
-                }
-
+                if (lvl < 1 || lvl > 12) 
+                    throw new FormatException("Valor de Level Inválido!\nO level do monstro deve ser um numero entre 1 e 12!");
+                
                 MonsterCard monster = new MonsterCard(nome, atk, def, lvl, tipo, atributo);
                 cartas.Add(monster);
             }
-            catch (FormatException e) {
+            catch (Exception e) {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("O valor atribuído é inválido!");
+                Console.WriteLine(e.Message);
                 Console.ReadKey();
                 Console.ResetColor();
                 MenuAddMonstro(cartas);
@@ -240,6 +255,10 @@ namespace YugiohDatabase {
         private List<Cards> MenuAddSpell(List<Cards> cartas) {
 
             try {
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("MAGIA\n");
+                Console.ResetColor();
                 Console.Write("Nome: ");
                 string nome = Console.ReadLine();
 
@@ -253,20 +272,20 @@ namespace YugiohDatabase {
                 int cat = Convert.ToInt32(Console.ReadLine());
                 
                 if (cat > 6 || cat < 1) {
-                    throw new FormatException();
+                    throw new FormatException("Categoria Inválida!");
                 }
                 
                 SpellCategory categoria = (SpellCategory)cat;
                 
                 Console.Write("Efeito: ");
                 string efeito = Console.ReadLine();
-
+                
                 SpellCard spell = new SpellCard(nome, efeito, categoria);
                 cartas.Add(spell);
             }
             catch (FormatException e) {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("O valor atribuído é inválido!");
+                Console.WriteLine(e.Message);
                 Console.ReadKey();
                 Console.ResetColor();
                 Console.Clear();
@@ -277,6 +296,10 @@ namespace YugiohDatabase {
 
         private List<Cards> MenuAddTrap(List<Cards> cartas) {
             try {
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.WriteLine("ARMADILHA\n");
+                Console.ResetColor();
                 Console.Write("Nome: ");
                 string nome = Console.ReadLine();
 
@@ -285,7 +308,7 @@ namespace YugiohDatabase {
                 Console.WriteLine("2 - Contínua");
                 Console.WriteLine("3 - Resposta");
 
-                TrapCategory categoria = (TrapCategory)Convert.ToInt32(Console.ReadLine());
+                TrapCategory categoria = (TrapCategory) Console.Read();
 
                 Console.Write("Efeito: ");
                 string efeito = Console.ReadLine();
@@ -293,8 +316,8 @@ namespace YugiohDatabase {
                 TrapCard trap = new TrapCard(nome, efeito, categoria);
                 cartas.Add(trap);
             }
-            catch (FormatException e) {
-
+            catch (Exception e) {
+                
             }
             return cartas;
         }
