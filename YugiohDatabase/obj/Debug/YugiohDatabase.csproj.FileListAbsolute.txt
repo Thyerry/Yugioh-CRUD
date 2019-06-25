@@ -12,3 +12,6 @@ C:\Users\t.nunes.dos.santos\source\repos\Yugioh-CRUD\YugiohDatabase\obj\Debug\Yu
 C:\Users\t.nunes.dos.santos\source\repos\Yugioh-CRUD\YugiohDatabase\bin\Debug\YugiohDatabase.exe.config
 C:\Users\t.nunes.dos.santos\source\repos\Yugioh-CRUD\YugiohDatabase\bin\Debug\YugiohDatabase.exe
 C:\Users\t.nunes.dos.santos\source\repos\Yugioh-CRUD\YugiohDatabase\bin\Debug\YugiohDatabase.pdb
+C:\Users\t.nunes.dos.santos\source\repos\Yugioh-CRUD\YugiohDatabase\bin\Debug\Newtonsoft.Json.dll
+C:\Users\t.nunes.dos.santos\source\repos\Yugioh-CRUD\YugiohDatabase\bin\Debug\Newtonsoft.Json.xml
+C:\Users\t.nunes.dos.santos\source\repos\Yugioh-CRUD\YugiohDatabase\obj\Debug\YugiohDatabase.csproj.CopyComplete

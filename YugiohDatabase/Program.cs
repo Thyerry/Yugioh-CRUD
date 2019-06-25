@@ -1,8 +1,13 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
+
 
 namespace YugiohDatabase {
     class Program {
@@ -11,6 +16,7 @@ namespace YugiohDatabase {
             List<Cards> cartas = new List<Cards>();
             Menu menu = new Menu();
             Console.Title = "Yu-Gi-Oh! Database";
+            if(!File.Exists("tottoland.json"))
 
             do {
                 Console.WriteLine("Yu-Gi-Oh! Database");
