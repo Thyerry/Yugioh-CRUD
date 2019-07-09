@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace YugiohDatabase {
-    class Cards {
+    class Cards : IComparable <Cards>{
         private string _nome { get; set; }
 
         public string Nome{
@@ -23,6 +23,15 @@ namespace YugiohDatabase {
 
         public Cards(string nome) {
             _nome = nome;
+        }
+
+        public int CompareTo(Cards other)
+        {
+            if(other == null)
+                return 1;
+            
+            else 
+                return this._nome.CompareTo(other.Nome);
         }
     }
 }

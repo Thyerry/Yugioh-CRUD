@@ -45,15 +45,17 @@ namespace YugiohDatabase {
             set { this._attribute = value; }
         }
         public override string ToString() {
-            string carta = String.Format("Monstro:");
-            string nome = String.Format("Nome: {0}", this.Nome);
-            string tipo = String.Format("Tipo: {0}", this.Type);
-            string level = String.Format("Level: {0}", this.Level);
-            string atributo = String.Format("Atributo: {0}", this.Attribute);
-            string ataque = String.Format("ATK: {0}", this.AtkValue);
-            string defesa = String.Format("DEF: {0}", this.DefValue);
-
-            return String.Format("{0}\n{1}\n{2}\n{3}\n{4}\n{5} {6}", carta, nome, level, tipo, atributo, ataque, defesa);
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("Monstro:");
+            Console.ResetColor();
+            Console.WriteLine("Nome: {0}", this.Nome);
+            Console.WriteLine("Tipo: {0}", this.Type);
+            Console.WriteLine("Level: {0}", this.Level);
+            Console.WriteLine("Atributo: {0}", this.Attribute);
+            Console.WriteLine("ATK: {0}", this.AtkValue);
+            Console.WriteLine("DEF: {0}", this.DefValue);
+            
+            return null/*String.Format("Monstro:\nNome: {0}\nTipo: {1}\nLevel: {2}\nAtributo: {3}\nATK: {4}\nDEF: {5}", this.Nome, this.Type, this.Level, this.Attribute, this.AtkValue, this.DefValue)*/;
         }
     }
 }

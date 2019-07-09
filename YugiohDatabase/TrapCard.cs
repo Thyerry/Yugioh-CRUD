@@ -26,7 +26,11 @@ namespace YugiohDatabase {
         }
 
         public override string ToString(){
-            return String.Format("Armadilha: \nNome: {0}\nCategoria: {1}\nEfeito: {2}", this.Nome, this.Category, this.Effect);
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.WriteLine("Armadilha:");
+            Console.ResetColor();
+            Console.WriteLine("Nome: {0}\nCategoria: {1}\nEfeito: {2}", this.Nome, this.Category, this.Effect);
+            return null /* String.Format("Armadilha: \nNome: {0}\nCategoria: {1}\nEfeito: {2}", this.Nome, this.Category, this.Effect)*/;
         }
 
     }

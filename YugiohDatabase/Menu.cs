@@ -82,7 +82,7 @@ namespace YugiohDatabase {
                 Console.WriteLine("RESULTADO");
                 Console.WriteLine("");
                 foreach (Cards card in consult) {
-                    Console.WriteLine(card.ToString());
+                    card.ToString();
                     Console.WriteLine();
                 }
                 Console.ReadKey();
@@ -195,12 +195,54 @@ namespace YugiohDatabase {
         }
 
         public List<Cards> MenuOrdena(List<Cards> cartas) {
-            Console.WriteLine("Lista das Cartas");
-            foreach (Cards card in cartas)
+            Console.Clear();
+            Console.WriteLine("Lista das Cartas\n");
+            Console.WriteLine("1 - Listar Todas as Cartas");
+            Console.WriteLine("2 - Listar só monstros");
+            Console.WriteLine("3 - Listar só Magias");
+            Console.WriteLine("4 - Listar só Armadilhas");
+            Console.WriteLine("0 - Voltar");
+
+            int op = 0;
+            try
             {
-                Console.WriteLine(card.ToString());
-                Console.WriteLine();
+                op = Convert.ToInt32(Console.ReadLine());
+                switch (op)
+                {
+                    case 1:{ 
+                        foreach (var item in cartas) item.ToString();
+                        break;
+                    }    
+                    case 2:{ 
+                        List<Cards> monstros = cartas.FindAll(card => card.GetType().Equals(new MonsterCard().GetType()));
+                        foreach (var card in monstros) card.ToString();
+                        break;
+                    }    
+                    case 3: {
+                        List<Cards> spells = cartas.FindAll(card => card.GetType().Equals(new SpellCard().GetType()));
+                        foreach (var item in spells) item.ToString();
+                        break;    
+                    }
+                    case 4: {
+                        List<Cards> traps = cartas.FindAll(card => card.GetType().Equals(new TrapCard().GetType()));
+                        foreach (var item in traps) item.ToString();
+                        break;
+                    }
+                    case 0: break;
+                    default: throw new Exception("Valor Inválido!\nClique em qualquer tecla para tentar novamente!");
+                }
             }
+            catch (Exception e)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine(e.Message);
+                Console.ResetColor();
+                MenuOrdena(cartas);
+            }
+            
+            
+            Console.ReadKey();
+            Console.Clear();
             return cartas;
         }
         private List<Cards> MenuAddMonstro(List<Cards> cartas) {
@@ -211,7 +253,9 @@ namespace YugiohDatabase {
                 Console.ResetColor();
                 Console.Write("Nome: ");
                 string nome = Console.ReadLine();
-    
+                if(cartas.Find(card => card.Nome.Equals(nome)) != null)
+                    throw new Exception("Já existe uma Carta com esse nome!");
+
                 Console.Write("Ataque: ");
                 int atk = Convert.ToInt32(Console.ReadLine());
 
@@ -310,7 +354,7 @@ namespace YugiohDatabase {
                 Console.WriteLine("2 - Contínua");
                 Console.WriteLine("3 - Resposta");
 
-                TrapCategory categoria = (TrapCategory) Console.Read();
+                TrapCategory categoria = (TrapCategory) Convert.ToInt32(Console.ReadLine());
 
                 Console.Write("Efeito: ");
                 string efeito = Console.ReadLine();

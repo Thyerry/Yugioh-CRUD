@@ -16,7 +16,6 @@ namespace YugiohDatabase {
             List<Cards> cartas = new List<Cards>();
             Menu menu = new Menu();
             Console.Title = "Yu-Gi-Oh! Database";
-            if(!File.Exists("tottoland.json"))
 
             do {
                 Console.WriteLine("Yu-Gi-Oh! Database");
