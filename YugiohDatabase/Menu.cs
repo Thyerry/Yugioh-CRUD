@@ -23,7 +23,7 @@ namespace YugiohDatabase {
 
             switch (op) {
                 case '1': {
-                    MenuAddMonstro(cartas); 
+                    MenuAddMonstro(cartas);
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.WriteLine("Monstro Adicionado com Sucesso!");
                     Console.ResetColor();
@@ -94,55 +94,61 @@ namespace YugiohDatabase {
         public List<Cards> MenuEditaCarta(List<Cards> cartas) {
             Console.Clear();
             Console.WriteLine("EDITAR CARTA");
-            Console.Write("Nome: ");
-            string pesquisa = Console.ReadLine();
 
-            Cards edit = cartas.Find(carta => carta.Nome == pesquisa);
+            try {
+                Console.Write("Nome: ");
+                string pesquisa = Console.ReadLine();
 
-            if (edit == null) {
+                Cards edit = cartas.Find(carta => carta.Nome == pesquisa);
+
+                if (edit == null)
+                    throw new Exception("Essa carta ainda não foi adicionada a base de dados!");
+                else {
+                    if (edit.GetType().Equals(new MonsterCard().GetType())) {
+                        Console.WriteLine("Insira as novas Informações");
+                        MenuAddMonstro(cartas);
+                        cartas.Remove(edit);
+
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.WriteLine("Dados do Monstro Foram Atualizados!");
+                        Console.ResetColor();
+                        Console.ReadKey();
+                        Console.Clear();
+                    }
+                    else if (edit.GetType().Equals(new SpellCard().GetType())) {
+                        Console.WriteLine("Insira as Novas Informações");
+                        MenuAddSpell(cartas);
+                        cartas.Remove(edit);
+
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("Dados da Magia Foram Atualizados!");
+                        Console.ResetColor();
+                        Console.ReadKey();
+                        Console.Clear();
+
+                    }
+                    else {
+                        Console.WriteLine("Insira as Novas Informações");
+                        MenuAddTrap(cartas);
+                        cartas.Remove(edit);
+
+                        Console.ForegroundColor = ConsoleColor.Magenta;
+                        Console.WriteLine("Dados da Armadilha Foram Atualizados!");
+                        Console.ResetColor();
+                        Console.ReadKey();
+                        Console.Clear();
+                    }
+
+                }
+            }
+            catch (Exception e) {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Essa carta ainda não foi adicionada a base de dados!");
+                Console.WriteLine(e.Message);
                 Console.ResetColor();
                 Console.ReadKey();
                 Console.Clear();
             }
-            else {
-                if (edit.GetType().Equals(new MonsterCard().GetType())) {
-                    Console.WriteLine("Insira as novas Informações");
-                    MenuAddMonstro(cartas);
-                    cartas.Remove(edit);
 
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine("Dados do Monstro Foram Atualizados!");
-                    Console.ResetColor();
-                    Console.ReadKey();
-                    Console.Clear();
-                }
-                else if (edit.GetType().Equals(new SpellCard().GetType())) {
-                    Console.WriteLine("Insira as Novas Informações");
-                    MenuAddSpell(cartas);
-                    cartas.Remove(edit);
-
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine("Dados da Magia Foram Atualizados!");
-                    Console.ResetColor();
-                    Console.ReadKey();
-                    Console.Clear();
-
-                }
-                else {
-                    Console.WriteLine("Insira as Novas Informações");
-                    MenuAddTrap(cartas);
-                    cartas.Remove(edit);
-
-                    Console.ForegroundColor = ConsoleColor.Magenta;
-                    Console.WriteLine("Dados da Armadilha Foram Atualizados!");
-                    Console.ResetColor();
-                    Console.ReadKey();
-                    Console.Clear();
-                }
-
-            }
             return cartas;
         }
 
@@ -155,17 +161,13 @@ namespace YugiohDatabase {
 
                 Cards remove = cartas.Find(card => card.Nome == pesquisa);
 
-                if (remove == null) {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Essa carta ainda não foi adicionada a base de dados!");
-                    Console.ResetColor();
-                    Console.ReadKey();
-                    Console.Clear();
-                }
+                if (remove == null)
+                    throw new Exception("Essa carta não existe na base de dados!");
+
                 else {
-                    Console.Write("Você tem certeza que quer excluir {0}? (y/n): ",remove.Nome);
+                    Console.Write("Você tem certeza que quer excluir {0}? (y/n): ", remove.Nome);
                     char confirm = Convert.ToChar(Console.ReadLine());
-                    if(confirm == 'y' || confirm == 'Y'){
+                    if (confirm == 'y' || confirm == 'Y') {
                         cartas.Remove(remove);
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine("A carta foi excluída do Banco de Dados");
@@ -180,12 +182,12 @@ namespace YugiohDatabase {
                         Console.ReadKey();
                         Console.Clear();
                     }
-                    
+
                 }
             }
             catch (Exception e) {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Insira Um nome válido");
+                Console.WriteLine(e.Message);
                 Console.ResetColor();
                 Console.ReadKey();
                 Console.Clear();
@@ -204,24 +206,22 @@ namespace YugiohDatabase {
             Console.WriteLine("0 - Voltar");
 
             int op = 0;
-            try
-            {
+            try {
                 op = Convert.ToInt32(Console.ReadLine());
-                switch (op)
-                {
-                    case 1:{ 
+                switch (op) {
+                    case 1: {
                         foreach (var item in cartas) item.ToString();
                         break;
-                    }    
-                    case 2:{ 
+                    }
+                    case 2: {
                         List<Cards> monstros = cartas.FindAll(card => card.GetType().Equals(new MonsterCard().GetType()));
                         foreach (var card in monstros) card.ToString();
                         break;
-                    }    
+                    }
                     case 3: {
                         List<Cards> spells = cartas.FindAll(card => card.GetType().Equals(new SpellCard().GetType()));
                         foreach (var item in spells) item.ToString();
-                        break;    
+                        break;
                     }
                     case 4: {
                         List<Cards> traps = cartas.FindAll(card => card.GetType().Equals(new TrapCard().GetType()));
@@ -232,15 +232,14 @@ namespace YugiohDatabase {
                     default: throw new Exception("Valor Inválido!\nClique em qualquer tecla para tentar novamente!");
                 }
             }
-            catch (Exception e)
-            {
+            catch (Exception e) {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine(e.Message);
                 Console.ResetColor();
                 MenuOrdena(cartas);
             }
-            
-            
+
+
             Console.ReadKey();
             Console.Clear();
             return cartas;
@@ -253,7 +252,7 @@ namespace YugiohDatabase {
                 Console.ResetColor();
                 Console.Write("Nome: ");
                 string nome = Console.ReadLine();
-                if(cartas.Find(card => card.Nome.Equals(nome)) != null)
+                if (cartas.Find(card => card.Nome.Equals(nome)) != null)
                     throw new Exception("Já existe uma Carta com esse nome!");
 
                 Console.Write("Ataque: ");
@@ -264,7 +263,7 @@ namespace YugiohDatabase {
 
                 Console.WriteLine(MostraTipos());
                 MonsterType tipo = (MonsterType)Convert.ToInt32(Console.ReadLine());
-                if((int)tipo < 1 || (int)tipo > 25)
+                if ((int)tipo < 1 || (int)tipo > 25)
                     throw new FormatException("Tipo Inválido!");
 
                 Console.WriteLine("Atributo: ");
@@ -275,15 +274,15 @@ namespace YugiohDatabase {
                 Console.WriteLine("5 - Fogo");
                 Console.WriteLine("6 - Vento");
                 Console.WriteLine("7 - Divino");
-                MonsterAttribute atributo = (MonsterAttribute) Convert.ToInt32(Console.ReadLine());
-                if((int)atributo < 1 || (int)atributo > 7)
+                MonsterAttribute atributo = (MonsterAttribute)Convert.ToInt32(Console.ReadLine());
+                if ((int)atributo < 1 || (int)atributo > 7)
                     throw new FormatException("Atributo Inválido!");
 
                 Console.WriteLine("Level (1-12): ");
                 int lvl = Convert.ToInt32(Console.ReadLine());
-                if (lvl < 1 || lvl > 12) 
+                if (lvl < 1 || lvl > 12)
                     throw new FormatException("Valor de Level Inválido!\nO level do monstro deve ser um numero entre 1 e 12!");
-                
+
                 MonsterCard monster = new MonsterCard(nome, atk, def, lvl, tipo, atributo);
                 cartas.Add(monster);
             }
@@ -316,16 +315,16 @@ namespace YugiohDatabase {
                 Console.WriteLine("5 - Campo");
                 Console.WriteLine("6 - Ritual");
                 int cat = Convert.ToInt32(Console.ReadLine());
-                
+
                 if (cat > 6 || cat < 1) {
                     throw new FormatException("Categoria Inválida!");
                 }
-                
+
                 SpellCategory categoria = (SpellCategory)cat;
-                
+
                 Console.Write("Efeito: ");
                 string efeito = Console.ReadLine();
-                
+
                 SpellCard spell = new SpellCard(nome, efeito, categoria);
                 cartas.Add(spell);
             }
@@ -354,7 +353,9 @@ namespace YugiohDatabase {
                 Console.WriteLine("2 - Contínua");
                 Console.WriteLine("3 - Resposta");
 
-                TrapCategory categoria = (TrapCategory) Convert.ToInt32(Console.ReadLine());
+                TrapCategory categoria = (TrapCategory)Convert.ToInt32(Console.ReadLine());
+                if ((int)categoria < 1 || (int)categoria > 3)
+                    throw new FormatException("Categoria inválida!");
 
                 Console.Write("Efeito: ");
                 string efeito = Console.ReadLine();
@@ -363,7 +364,12 @@ namespace YugiohDatabase {
                 cartas.Add(trap);
             }
             catch (Exception e) {
-                
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine(e.Message);
+                Console.ResetColor();
+                Console.ReadKey();
+                Console.Clear();
+                MenuAddTrap(cartas);
             }
             return cartas;
         }

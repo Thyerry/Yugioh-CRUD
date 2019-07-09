@@ -29,7 +29,7 @@ namespace YugiohDatabase {
 
                 try {
                     op = Convert.ToChar(Console.ReadLine());
-                    
+
                     switch (op) {
                         case '1': menu.MenuAddCarta(cartas); break;
                         case '2': menu.MenuConsultaCarta(cartas); break;
@@ -37,9 +37,10 @@ namespace YugiohDatabase {
                         case '4': menu.MenuRemoveCarta(cartas); break;
                         case '5': menu.MenuOrdena(cartas); break;
                         case '0': break;
-                        default: throw new FormatException("Insira uma opção válida!"); 
+                        default: throw new FormatException("Insira uma opção válida!");
                     }
-                } catch (FormatException e){
+                }
+                catch (FormatException e) {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine(e.Message);
                     Console.ReadKey();
